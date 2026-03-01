@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TempoMeu 🌟</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar" role="banner">
+  <div class="logo">
+    <span>☀️</span> TempoMeu
+  </div>
+  <div class="topbar-actions">
+    <button class="icon-btn" id="soundToggleBtn" onclick="toggleSound()" title="Som ligado/desligado" aria-label="Ativar ou desativar sons">🔊</button>
+    <button class="icon-btn" onclick="toggleContrast()" title="Alto contraste" aria-label="Ativar alto contraste">🌗</button>
+  </div>
+</header>
+
+<!-- STARS BAR -->
+<div class="stars-bar" role="status" aria-live="polite">
+  <span>⭐ Suas estrelas:</span>
+  <span class="stars-display" id="starsDisplay">⭐⭐⭐</span>
+  <span id="starsCount" style="font-size:1.4rem;">3</span>
+</div>
+
+<!-- NAV TABS -->
+<nav class="nav-tabs" role="tablist" aria-label="Seções do aplicativo">
+  <button class="nav-tab active" onclick="showSection('rotina')" role="tab" aria-selected="true" tabindex="0">
+    <span class="tab-icon">📅</span> Rotina
+  </button>
+  <button class="nav-tab" onclick="showSection('calendario')" role="tab" aria-selected="false" tabindex="-1">
+    <span class="tab-icon">🗓️</span> Calendário
+  </button>
+  <button class="nav-tab" onclick="showSection('jogos')" role="tab" aria-selected="false" tabindex="-1">
+    <span class="tab-icon">🎮</span> Jogos
+  </button>
+  <button class="nav-tab" onclick="showSection('recompensas')" role="tab" aria-selected="false" tabindex="-1">
+    <span class="tab-icon">🏅</span> Prêmios
+  </button>
+  <button class="nav-tab" onclick="showSection('humor')" role="tab" aria-selected="false" tabindex="-1">
+    <span class="tab-icon">💛</span> Humor
+  </button>
+  <button class="nav-tab" onclick="showSection('cuidador')" role="tab" aria-selected="false" tabindex="-1">
+    <span class="tab-icon">👩‍⚕️</span> Cuidador
+  </button>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="main" role="main">
+
+  <!-- ===== ROTINA ===== -->
+  <section class="section active" id="rotina-section" aria-labelledby="rotina-title">
+    <h1 class="sec-title" id="rotina-title">📅 Minha Rotina de Hoje</h1>
+    <p class="progress-label">Progresso do dia</p>
+    <div class="progress-wrap" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar">
+      <div class="progress-bar" id="progressFill" style="width:0%">0%</div>
+    </div>
+    <div class="task-list" id="taskList" role="list"></div>
+  </section>
+
+  <!-- ===== CALENDÁRIO ===== -->
+  <section class="section" id="calendario-section" aria-labelledby="cal-title">
+    <h1 class="sec-title" id="cal-title">🗓️ Calendário</h1>
+    <div class="date-display" id="dateDisplay"></div>
+    <h2 style="font-size:1.2rem;font-weight:800;margin-bottom:14px;">📆 Este Mês</h2>
+    <div class="month-grid" id="monthGrid"></div>
+    <h2 style="font-size:1.2rem;font-weight:800;margin:20px 0 14px;">🌡️ Estações do Ano</h2>
+    <div class="season-grid" id="seasonGrid"></div>
+    <h2 style="font-size:1.2rem;font-weight:800;margin:24px 0 14px;">🧠 Exercício: Qual é o próximo dia?</h2>
+    <div id="quizArea"></div>
+  </section>
+
+  <!-- ===== JOGOS ===== -->
+  <section class="section" id="jogos-section" aria-labelledby="jogos-title">
+    <h1 class="sec-title" id="jogos-title">🎮 Jogos</h1>
+    <div class="game-grid" id="gameGrid">
+      <div class="game-card" onclick="startGame('match')" tabindex="0" onkeydown="if(event.key==='Enter')startGame('match')">
+        <span class="game-emoji">🔗</span>
+        Palavra e Imagem
+      </div>
+      <div class="game-card" onclick="startGame('syllable')" tabindex="0" onkeydown="if(event.key==='Enter')startGame('syllable')">
+        <span class="game-emoji">🔤</span>
+        Sílabas
+      </div>
+      <div class="game-card" onclick="startGame('sequence')" tabindex="0" onkeydown="if(event.key==='Enter')startGame('sequence')">
+        <span class="game-emoji">📋</span>
+        Sequência do Dia
+      </div>
+    </div>
+    <div class="game-area" id="gameArea"></div>
+  </section>
+
+  <!-- ===== RECOMPENSAS ===== -->
+  <section class="section" id="recompensas-section" aria-labelledby="recomp-title">
+    <h1 class="sec-title" id="recomp-title">🏅 Meus Prêmios</h1>
+    <p style="font-size:1.1rem;margin-bottom:20px;font-weight:700;color:var(--text-soft);">Complete tarefas para ganhar medalhas! 🌟</p>
+    <div class="rewards-grid" id="rewardsGrid"></div>
+  </section>
+
+  <!-- ===== HUMOR ===== -->
+  <section class="section" id="humor-section" aria-labelledby="humor-title">
+    <h1 class="sec-title" id="humor-title">💛 Como Estou Hoje?</h1>
+    <div class="mood-header-card">
+      <div class="mood-header-title">Como você está se sentindo agora? 🤗</div>
+      <div class="mood-header-sub">Toque na foto que mostra como você está!</div>
+    </div>
+    <div class="mood-grid" id="moodGrid"></div>
+    <button class="mood-confirm-btn" id="moodConfirmBtn" onclick="confirmMood()" disabled>✅ Confirmar meu humor!</button>
+    <div class="mood-result" id="moodResult">
+      <span class="mood-result-emoji" id="moodResultEmoji"></span>
+      <div class="mood-result-text" id="moodResultText"></div>
+      <div class="mood-result-msg" id="moodResultMsg"></div>
+    </div>
+    <div class="mood-history-title">📋 Meu humor de hoje:</div>
+    <div class="mood-history-list" id="moodHistoryList">
+      <p style="color:var(--text-soft);font-weight:700">Ainda não registrou seu humor hoje.</p>
+    </div>
+  </section>
+
+  <!-- ===== CUIDADOR ===== -->
+  <section class="section" id="cuidador-section" aria-labelledby="cuidador-title">
+    <h1 class="sec-title" id="cuidador-title">👩‍⚕️ Painel do Cuidador</h1>
+
+    <!-- Sound and contrast settings -->
+    <h2 style="font-size:1.1rem;font-weight:800;margin-bottom:14px;">⚙️ Configurações</h2>
+    <div class="sound-toggle">
+      <span>🔊</span>
+      <span style="flex:1">Sons e Áudio</span>
+      <button class="toggle-switch on" id="soundToggleCare" onclick="toggleSound()" aria-label="Ativar ou desativar sons"></button>
+    </div>
+    <div class="sound-toggle">
+      <span>🌗</span>
+      <span style="flex:1">Alto Contraste</span>
+      <button class="toggle-switch" id="contrastToggleCare" onclick="toggleContrast()" aria-label="Ativar alto contraste"></button>
+    </div>
+
+    <!-- Stats -->
+    <h2 style="font-size:1.1rem;font-weight:800;margin:24px 0 14px;">📊 Progresso de Hoje</h2>
+    <div class="caregiver-grid">
+      <div class="stat-card">
+        <div class="stat-icon">✅</div>
+        <div class="stat-value" id="statDone" style="color:var(--grass)">0</div>
+        <div class="stat-label">Tarefas Concluídas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⭐</div>
+        <div class="stat-value" id="statStars" style="color:var(--sun)">3</div>
+        <div class="stat-label">Estrelas Ganhas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🎮</div>
+        <div class="stat-value" id="statGames" style="color:var(--lavender)">0</div>
+        <div class="stat-label">Jogos Completados</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📅</div>
+        <div class="stat-value" id="statTotal" style="color:var(--sky)">0</div>
+        <div class="stat-label">Total de Tarefas</div>
+      </div>
+    </div>
+
+    <!-- Add task -->
+    <h2 style="font-size:1.1rem;font-weight:800;margin-bottom:14px;">➕ Adicionar Nova Tarefa</h2>
+    <div class="add-form-card">
+      <div class="add-form-body">
+        <div class="add-img-preview" id="addImgPreview">
+          <span class="add-img-placeholder-icon">📷</span>
+          <span class="add-img-placeholder-text">Toque para<br>adicionar foto</span>
+          <input type="file" accept="image/*" onchange="previewNewTaskImage(this)" aria-label="Foto da tarefa" />
+        </div>
+        <input type="hidden" id="newTaskImageData" />
+        <input type="hidden" id="newTaskAudioData" />
+        <div class="add-form-right">
+          <input type="text" class="form-input" id="newTaskName" placeholder="Nome da tarefa..." aria-label="Nome da tarefa" />
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <input type="time" class="form-input" id="newTaskTime" style="flex:1;min-width:120px;" aria-label="Horário da tarefa" />
+            <button class="btn btn-primary" onclick="addTask()" style="flex:1;min-width:120px;justify-content:center;">➕ Adicionar</button>
+          </div>
+          <div>
+            <div class="add-audio-label">🔊 Áudio da tarefa (opcional):</div>
+            <div class="add-form-audio-row">
+              <label class="audio-upload-btn" id="newAudioUploadBtn" title="Enviar arquivo de áudio">
+                📁 Enviar áudio
+                <input type="file" accept="audio/*" onchange="previewNewTaskAudio(this)" aria-label="Áudio da tarefa" />
+              </label>
+              <button class="record-btn" id="newRecordBtn" onclick="toggleNewTaskRecording()" type="button" aria-label="Gravar voz">
+                <span class="rec-dot"></span> Gravar voz
+              </button>
+            </div>
+            <div id="newAudioPreview" style="margin-top:8px;display:none;">
+              <div class="audio-preview-row">
+                <button class="audio-play-mini" onclick="playPreviewAudio()" aria-label="Ouvir áudio">▶</button>
+                <span id="newAudioName">áudio gravado</span>
+                <button class="audio-remove-btn" onclick="removeNewTaskAudio()" aria-label="Remover áudio">✕</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Task manager -->
+    <h2 style="font-size:1.1rem;font-weight:800;margin-bottom:14px;">🖼️ Tarefas — Fotos, Áudios e Horários</h2>
+    <p style="font-size:0.95rem;font-weight:700;color:var(--text-soft);margin-bottom:16px;">Toque na foto para trocar a imagem. Use os botões de áudio para gravar ou enviar a voz para cada tarefa.</p>
+    <div class="care-task-list" id="careTaskList"></div>
+
+    <!-- History -->
+    <h2 style="font-size:1.1rem;font-weight:800;margin-bottom:14px;">📋 Histórico de Hoje</h2>
+    <div id="historyList" style="background:var(--bg);border:3px solid var(--border);border-radius:var(--radius);padding:20px;">
+      <p style="color:var(--text-soft);font-weight:700;">Nenhuma tarefa concluída ainda.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- Celebration overlay -->
+<div class="celebration" id="celebration" aria-hidden="true"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
