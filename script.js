@@ -403,10 +403,10 @@ function renderCalendar() {
   seasonGrid.innerHTML = '';
   const curMonth = today.getMonth();
   const SEASON_PHOTOS = {
-    'Verão':     'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80',
-    'Outono':    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80',
-    'Inverno':   'https://images.unsplash.com/photo-1418985991508-e47386d96a71?w=600&q=80',
-    'Primavera': 'https://images.unsplash.com/photo-1490750967868-88df5691cc7a?w=600&q=80',
+    'Verão':     'https://unsplash.com/pt-br/fotografias/seashore-during-golden-hour-KMn4VEeEPR8',
+    'Outono':    'https://unsplash.com/pt-br/fotografias/um-banco-sentado-no-meio-de-uma-floresta-ao-lado-de-um-lago-4PWEXNlnhbo',
+    'Inverno':   'https://unsplash.com/pt-br/fotografias/fotografia-de-foco-raso-de-arvores-cheias-de-neve-UdgvzNom0Xs',
+    'Primavera': 'https://unsplash.com/pt-br/fotografias/fotografia-aerea-de-flores-durante-o-dia-TRhGEGdw-YY',
   };
   SEASONS.forEach(s => {
     const isCurrent = s.months.includes(curMonth);
