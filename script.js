@@ -403,10 +403,10 @@ function renderCalendar() {
   seasonGrid.innerHTML = '';
   const curMonth = today.getMonth();
   const SEASON_PHOTOS = {
-    'Verão':     'https://unsplash.com/pt-br/fotografias/seashore-during-golden-hour-KMn4VEeEPR8',
-    'Outono':    'https://unsplash.com/pt-br/fotografias/um-banco-sentado-no-meio-de-uma-floresta-ao-lado-de-um-lago-4PWEXNlnhbo',
-    'Inverno':   'https://unsplash.com/pt-br/fotografias/fotografia-de-foco-raso-de-arvores-cheias-de-neve-UdgvzNom0Xs',
-    'Primavera': 'https://unsplash.com/pt-br/fotografias/fotografia-aerea-de-flores-durante-o-dia-TRhGEGdw-YY',
+    'Verão':     'img/verao.jpg',
+    'Outono':    'img/outono.jpg',
+    'Inverno':   'img/inverno.jpg',
+    'Primavera': 'img/primavera.jpg',
   };
   SEASONS.forEach(s => {
     const isCurrent = s.months.includes(curMonth);
@@ -821,25 +821,25 @@ function updateStats() {
 const MOODS = [
   {
     id: 'feliz', label: '😄 Feliz', color: '#FFD166', borderColor: '#E6B800',
-    photo: 'humor-feliz.jpg',
+    photo: 'img/humor-feliz.jpg',
     alt: 'Criança feliz sorrindo',
     message: 'Que ótimo! Hoje está sendo um dia incrível! Continue assim! 🌟'
   },
   {
     id: 'triste', label: '😢 Triste', color: '#C9B1FF', borderColor: '#9B86E8',
-    photo: 'humor-triste.jpg',
+    photo: 'img/humor-triste.jpg',
     alt: 'Criança triste com expressão cabisbaixa',
     message: 'Tudo bem ficar triste às vezes. Converse com alguém que você ama! 🤗'
   },
   {
     id: 'tranquilo', label: '🙂 Tranquilo', color: '#A8E6CF', borderColor: '#76C4A8',
-    photo: 'humor-tranquilo.jpg',
+    photo: 'img/humor-tranquilo.jpg',
     alt: 'Criança tranquila',
     message: 'Você está indo muito bem. Eu tenho orgulho de você.💗'
   },
   {
     id: 'bravo', label: '😠 Bravo', color: '#FFCBA4', borderColor: '#E8A87C',
-    photo: 'humor-bravo.jpg', 
+    photo: 'img/humor-bravo.jpg', 
     alt: 'Adulto com expressão de brava',
     message: 'Respira fundo! Você pode conversar com alguém sobre o que te incomoda. 💨'
   },
